@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <title>Ulubione produkty</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="favicon.png" type="image/png">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <style>
+    .produkt-rzad {
+      display: flex;
+      align-items: flex-start;
+      background-color: white;
+      border-radius: 10px;
+      padding: 20px;
+      box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+      max-width: 600px;
+      width: 100%;
+    }
+
+    .produkt-rzad img {
+      width: 120px;
+      aspect-ratio: 3 / 2;
+      object-fit: cover;
+      border-radius: 8px;
+      margin-right: 20px;
+      flex-shrink: 0;
+    }
+
+    .info {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      flex: 1;
+    }
+
+    .info h2 {
+      margin: 0 0 10px;
+      font-size: 1.3rem;
+      color: #5a2a83;
+    }
+
+    .cena-i-przycisk {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .cena-i-przycisk p {
+      margin: 0;
+      font-size: 1rem;
+      color: #333;
+    }
+
+    .cena-i-przycisk button {
+      padding: 6px 10px;
+      background-color: #c48b9f;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-weight: bold;
+    }
+
+    .cena-i-przycisk button:hover {
+      background-color: #a86b80;
+    }
+
+    .ulubione-produkty {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      max-width: 800px;
+      margin: 40px auto;
+      padding: 0 20px;
+    }
+
+    h2 {
+      text-align: center;
+      font-family: 'Quicksand', sans-serif;
+      font-size: 2rem;
+      color: #c48b9f;
+      margin: 40px 0 20px;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <img src="logo.png" alt="Logo Biżuteria Nelaxos" class="logo">
+    <div class="header-right">
+      <h1>Biżuteria Nelaxos</h1>
+      <nav>
+        <a href="index.html">Strona główna</a>
+        <a href="produkty.html">Biżuteria</a>
+        <a href="O_mnie.html">O mnie</a>
+        <a href="Kontakt.html">Kontakt</a>
+        <a href="ulubione.html">Ulubione</a>
+      </nav>
+    </div>
+  </header>
+
+  <h2><i class="fa-solid fa-heart"></i> Ulubione produkty</h2>
+  <div class="ulubione-produkty" id="ulubione-produkty"></div>
+
+  <script>
+    let ulubione = JSON.parse(localStorage.getItem("ulubione")) || [];
+    const kontener = document.getElementById("ulubione-produkty");
+
+    function odswiezListe() {
+      kontener.innerHTML = "";
+
+      if (ulubione.length === 0) {
+        kontener.innerHTML = "<p style='text-align:center;'>Brak ulubionych produktów.</p>";
+        return;
+      }
+
+      let suma = 0;
+
+      ulubione.forEach((p, index) => {
+        const karta = document.createElement("div");
+        karta.classList.add("produkt-rzad");
+
+        const cenaLiczba = parseFloat(p.cena.replace(/[^\d.]/g, ""));
+        suma += cenaLiczba;
+
+        karta.innerHTML = `
+          <img src="${p.obrazek}" alt="${p.nazwa}">
+          <div class="info">
+            <h2><i class="fa-solid fa-gem"></i> ${p.nazwa}</h2>
+            <div class="cena-i-przycisk">
+              <p><i class="fa-solid fa-tag"></i> ${p.cena}</p>
+              <button onclick="usunProdukt(${index})">
+                <i class="fa-solid fa-heart-circle-xmark"></i> Usuń
+              </button>
+            </div>
+          </div>
+        `;
+
+        kontener.appendChild(karta);
+      });
+
+      const sumaElement = document.createElement("div");
+      sumaElement.style.marginTop = "30px";
+      sumaElement.style.fontSize = "1.2rem";
+      sumaElement.style.fontWeight = "bold";
+      sumaElement.style.color = "#c48b9f";
+      sumaElement.innerHTML = `<i class="fa-solid fa-coins"></i> Łączna wartość: ${suma.toFixed(2)} zł`;
+
+      kontener.appendChild(sumaElement);
+    }
+
+    function usunProdukt(index) {
+      ulubione.splice(index, 1);
+      localStorage.setItem("ulubione", JSON.stringify(ulubione));
+      odswiezListe();
+    }
+
+    odswiezListe();
+  </script>
+
+  <footer>
+    <p>&copy; Biżuteria Nelaxos | Wszystkie prawa zastrzeżone</p>
+	<a href="polityka prywatności.html">Polityka prywatności</a>
+  </footer>
+<div id="cookie-banner" style="display: none;">
+  <p>Ta strona używa ciasteczek, aby poprawić komfort użytkowania. 
+    <button id="accept-cookies">Akceptuję</button>
+  </p>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const banner = document.getElementById("cookie-banner");
+    const acceptBtn = document.getElementById("accept-cookies");
+
+    if (!localStorage.getItem("cookiesAccepted")) {
+      banner.style.display = "block";
+    }
+
+    acceptBtn.addEventListener("click", () => {
+      localStorage.setItem("cookiesAccepted", "true");
+      banner.style.display = "none";
+    });
+  });
+</script>
+
+</body>
+</html>

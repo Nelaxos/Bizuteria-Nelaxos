@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <title>Bransoletka niebieska</title>
+  <link rel="stylesheet" href="../styles.css">
+  <link rel="icon" href="../favicon.png" type="image/png">
+</head>
+<div class="lightbox-overlay" id="lightbox">
+  <img src="" alt="powiększone zdjęcie">
+  </div>
+<body>
+
+  <header>
+    <img src="../logo.png" alt="Logo Biżuteria Nelaxos" class="logo">
+    <div class="header-right">
+      <h1>Biżuteria Nelaxos</h1>
+      <nav>
+     <a href="../index.html">Strona główna</a>
+      <a href="../produkty.html">Biżuteria</a>
+      <a href="../O_mnie.html">O mnie</a>
+      <a href="../Kontakt.html">Kontakt</a>
+	  <a href="../ulubione.html">Ulubione</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="product-page">
+    <div class="gallery">
+      <img src="../grafika/Bransoletki/n_bransoletka2_3.jpg" alt="nb1">
+	  <img src="../grafika/Bransoletki/n_bransoletka2_4.png" alt="nb2">
+	  <img src="../grafika/Bransoletki/n_bransoletka2_1.jpg" alt="nb3">
+	  <img src="../grafika/Bransoletki/n_bransoletka2_2.jpg" alt="nb4">
+    </div>
+
+    <div class="description">
+      <h2>Branoletka niebieska</h2>
+      <p>kolor: niebieski, biały,</br>stal: nierdzewna, <br>rodzaj: bransoletki<br>dlugość: 16,5 cm<br>długość z zapieciem:19,5 cm</p>
+      <p><strong>Cena:</strong> 40 zł</p>
+	 <button id="dodaj-ulubiony">Dodaj do ulubionych</button>
+
+	   <script>
+  document.getElementById("dodaj-ulubiony").addEventListener("click", function() {
+    const produkt = {
+      nazwa: "Bransoletka niebieska",
+      cena: "40 zł",
+      obrazek: "grafika/Bransoletki/n_bransoletka2_3.jpg"
+	      
+    };
+
+    let ulubione = JSON.parse(localStorage.getItem("ulubione")) || [];
+
+    // Sprawdź, czy produkt już istnieje
+    const istnieje = ulubione.some(p => p.nazwa === produkt.nazwa && p.cena === produkt.cena);
+
+    if (!istnieje) {
+      ulubione.push(produkt);
+      localStorage.setItem("ulubione", JSON.stringify(ulubione));
+      alert("Dodano do ulubionych!");
+    } else {
+      alert("Ten produkt już jest w ulubionych.");
+    }
+  });
+</script>
+    </div>
+  </section>
+
+    </div>
+  </section>
+
+  <section class="care-instructions">
+    <h3>Jak dbać o biżuterię?</h3>
+    <ul>
+      <li>Przechowuj biżuterię w suchym miejscu, najlepiej w pudełku lub woreczku materiałowym.</li>
+      <li>Unikaj kontaktu z wodą, perfumami i kosmetykami – mogą uszkodzić powierzchnię.</li>
+      <li>Czyść delikatnie miękką ściereczką, bez użycia chemicznych środków.</li>
+      <li>Zdejmuj biżuterię przed snem, kąpielą i ćwiczeniami fizycznymi.</li>
+    </ul>
+  </section>
+
+  <footer>
+    <p>&copy; Biżuteria Nelaxos | Wszystkie prawa zastrzeżone</p>
+	<a href="polityka prywatności.html">Polityka prywatności</a>
+  </footer>
+<script>
+  const lightbox = document.getElementById("lightbox");
+  const lightboxImg = lightbox.querySelector("img");
+
+  document.querySelectorAll(".gallery img").forEach(img => {
+    img.addEventListener("click", () => {
+      lightboxImg.src = img.src;
+      lightbox.style.display = "flex";
+    });
+  });
+
+  lightbox.addEventListener("click", () => {
+    lightbox.style.display = "none";
+  });
+</script>
+<div id="cookie-banner" style="display: none;">
+  <p>Ta strona używa ciasteczek, aby poprawić komfort użytkowania. 
+    <button id="accept-cookies">Akceptuję</button>
+  </p>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const banner = document.getElementById("cookie-banner");
+    const acceptBtn = document.getElementById("accept-cookies");
+
+    if (!localStorage.getItem("cookiesAccepted")) {
+      banner.style.display = "block";
+    }
+
+    acceptBtn.addEventListener("click", () => {
+      localStorage.setItem("cookiesAccepted", "true");
+      banner.style.display = "none";
+    });
+  });
+</script>
+
+</body>
+</html>

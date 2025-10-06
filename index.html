@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Ręcznie robiona biżuteria. Unikalne bransoletki, naszyjniki i kolczyki.">
+  <title>Biżuteria Nelaxos</title>
+ <link rel="icon" href="favicon.png" type="image/png">
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+
+  <header>
+  <img src="logo.png" alt="Logo Biżuteria Nelaxos" class="logo">
+<div class="header-right">
+    <h1>Biżuteria Nelaxos</h1>
+	
+    <nav>
+      <a href="index.html">Strona główna</a>
+      <a href="produkty.html">Biżuteria</a>
+      <a href="O_mnie.html">O mnie</a>
+      <a href="Kontakt.html">Kontakt</a>
+	  <a href="ulubione.html">Ulubione</a>
+
+
+    </nav>
+	</div>
+  </header>
+
+  <section class="hero">
+  <div class="overlay"></div>
+  <h2>Unikalna biżuteria z pasją</h2>
+</section>
+
+
+  <section class="content">
+    <h3>Przykładowe rękodzieła</h3>
+    <div class="products">
+	<a href="produkty/Matching_Bransoletki1.html" class="product">
+        <img src="grafika/Bransoletki/11.08.3.jpg" alt="matchingowe bransoletki">
+        <h4>Zestaw Bransoletek</h4>
+      </a>
+	  
+     <a href="produkty/naszyjnik1.html" class="product">
+        <img src="grafika/Naszyjniki/naszyjnik1.jpg" alt="Naszyjnik ze srebra">
+        <h4>Naszyjnik z żabką</h4>
+      </a>
+	  
+      <a href="produkty/sluchawki_brelok1.html" class="product">
+        <img src="grafika/Breloki/brelok1.jpg" alt="Brelok słuchawki">
+        <h4>brelok słuchawki</h4>
+      </a>
+	  
+	  <a href="produkty/filly_brelok1.html" class="product" >
+        <img src="grafika/Breloki/filly_brelok1_4.jpg" alt="brelok_filly">
+        <h4>Brelok z kucykiem filly</h4>
+		</a>
+	  
+	  
+    </div>
+  </section>
+
+  <footer>
+    <p>&copy; Biżuteria Nelaxos | Wszystkie prawa zastrzeżone</p>
+	<a href="polityka prywatności.html">Polityka prywatności</a>
+  </footer>
+
+
+<div id="cookie-banner" style="display: none;">
+  <p>Ta strona używa ciasteczek, aby poprawić komfort użytkowania. 
+    <button id="accept-cookies">Akceptuję</button>
+  </p>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const banner = document.getElementById("cookie-banner");
+    const acceptBtn = document.getElementById("accept-cookies");
+
+    // Sprawdź, czy użytkownik już zaakceptował ciasteczka
+    if (!localStorage.getItem("cookiesAccepted")) {
+      banner.style.display = "block";
+    }
+
+    // Obsługa kliknięcia
+    acceptBtn.addEventListener("click", () => {
+      localStorage.setItem("cookiesAccepted", "true");
+      banner.style.display = "none";
+    });
+  });
+</script>
+
+</body>
+</html>

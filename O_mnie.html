@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <title>O mnie | Biżuteria Nelaxos</title>
+  <link rel="stylesheet" href="styles.css">
+  <link rel="icon" href="favicon.png" type="image/png">
+</head>
+<body>
+
+  <header>
+    <img src="logo.png" alt="Logo Biżuteria Nelaxos" class="logo">
+    <div class="header-right">
+      <h1>Biżuteria Nelaxos</h1>
+      <nav>
+        <a href="index.html">Strona główna</a>
+        <a href="produkty.html">Biżuteria</a>
+        <a href="O_mnie.html">O mnie</a>
+        <a href="Kontakt.html">Kontakt</a>
+        <a href="ulubione.html">Ulubione</a>
+      </nav>
+    </div>
+  </header>
+
+  <section class="about-me">
+  <h2>O mnie</h2>
+  <div class="about-text">
+      <p>
+        Cześć! Jestem Oliwia i tworzę pod nazwą artystyczną Nelaxos. Do każdego projektu podchodzę indywidualnie oraz z pasją. Moją myślą przewodnią jest, aby każdy nosił coś pięknego, co go podkreśla, w czym czuje sie dobrze i atrakcyjnie. Moje hobby realizuję od 1,5 roku.   </p>
+      <p>
+        Nelaxos to nie tylko produkty — to doświadczenie. Tworzę z myślą o Tobie: o Twojej codzienności, marzeniach i chwilach, które zasługują na odrobinę blasku. Dziękuję, że jesteś tutaj 💖
+       </p>
+    </div>
+</section>
+
+  <footer>
+    <p>&copy; Biżuteria Nelaxos | Wszystkie prawa zastrzeżone</p>
+	<a href="polityka prywatności.html">Polityka prywatności</a>
+  </footer>
+<div id="cookie-banner" style="display: none;">
+  <p>Ta strona używa ciasteczek, aby poprawić komfort użytkowania. 
+    <button id="accept-cookies">Akceptuję</button>
+  </p>
+</div>
+
+<script>
+  document.addEventListener("DOMContentLoaded", () => {
+    const banner = document.getElementById("cookie-banner");
+    const acceptBtn = document.getElementById("accept-cookies");
+
+    if (!localStorage.getItem("cookiesAccepted")) {
+      banner.style.display = "block";
+    }
+
+    acceptBtn.addEventListener("click", () => {
+      localStorage.setItem("cookiesAccepted", "true");
+      banner.style.display = "none";
+    });
+  });
+</script>
+
+</body>
+</html>
